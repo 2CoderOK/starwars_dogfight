@@ -10,7 +10,7 @@ SCREEN_HEIGHT = 500
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.image.load("images/fighter_xwing.png")
+        self.surf = pygame.image.load("images/fighter_xwing.png").convert_alpha()
         self.surf = pygame.transform.rotate(self.surf, -90)
         self.rect = self.surf.get_rect(center=(100, 250))
         self.speed = 10
@@ -33,7 +33,7 @@ class Player(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
-        self.surf = pygame.image.load("images/fighter_tie.png")
+        self.surf = pygame.image.load("images/fighter_tie.png").convert_alpha()
         self.surf = pygame.transform.rotate(self.surf, -90)
         self.rect = self.surf.get_rect(center=(SCREEN_WIDTH + 50, randint(20, SCREEN_HEIGHT - 50)))
         self.speed = randint(5, 10)
@@ -48,7 +48,7 @@ class Enemy(pygame.sprite.Sprite):
 class Fire(pygame.sprite.Sprite):
     def __init__(self, playerRect):
         super(Fire, self).__init__()
-        self.surf = pygame.image.load("images/fire_1.png")
+        self.surf = pygame.image.load("images/fire_1.png").convert_alpha()
         self.surf = pygame.transform.rotate(self.surf, -90)
         self.rect = self.surf.get_rect(center=(playerRect.left + 10, playerRect.top + 25))
         self.speed = 30
@@ -63,7 +63,7 @@ class Fire(pygame.sprite.Sprite):
 class BGPlanet(pygame.sprite.Sprite):
     def __init__(self, img_path, dest, speed, resize):
         super(BGPlanet).__init__()
-        self.surf = pygame.image.load(img_path)
+        self.surf = pygame.image.load(img_path).convert_alpha()
         self.surf = pygame.transform.scale(self.surf, (self.surf.get_width() + resize, self.surf.get_height() + resize))
         self.rect = self.surf.get_rect()
         self.rect.move_ip(dest.left, dest.top)
@@ -81,7 +81,7 @@ class BGPlanet(pygame.sprite.Sprite):
 class BGStar(pygame.sprite.Sprite):
     def __init__(self, dest, is_falling=False):
         super(BGStar).__init__()
-        self.surf = pygame.image.load("images/star.png")
+        self.surf = pygame.image.load("images/star.png").convert_alpha()
         self.surf.set_alpha(0)
         self.rect = self.surf.get_rect()
         self.rect.move_ip(dest.left, dest.top)
@@ -124,7 +124,7 @@ pygame.time.set_timer(ADDENEMY, 1000)
 
 pl = Player()
 
-bg_space = pygame.image.load("images/space.png")
+bg_space = pygame.image.load("images/space.png").convert()
 
 death_star = BGPlanet("images/death_star.png", pygame.rect.Rect(150, 150, 0, 0), 0.05, 90)
 planet_1 = BGPlanet("images/planet_1.png", pygame.rect.Rect(550, 90, 0, 0), 0.020, 20)
